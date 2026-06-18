@@ -1,0 +1,14 @@
+from odoo import fields, models, api
+from odoo.exceptions import ValidationError
+
+
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+    property_id = fields.Many2one('property')
+    def action_confirm(self):
+        res = super(SaleOrder, self).action_confirm()
+        print("inside action_confirm method")
+        return res
+
+
+
