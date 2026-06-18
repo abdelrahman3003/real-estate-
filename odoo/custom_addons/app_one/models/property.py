@@ -17,6 +17,7 @@ class Property(models.Model):
     description = fields.Text()
     postcode = fields.Char(required=True)
     date_availability = fields.Date(tracking=True)
+    create_time = fields.Datetime(default=fields.datetime.now())
     expected_selling_date = fields.Date(tracking=True)
     is_late = fields.Boolean(readonly=True)
     expected_price = fields.Float(required=True, digits=(6, 4))

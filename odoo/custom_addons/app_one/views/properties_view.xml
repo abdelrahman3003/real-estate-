@@ -52,6 +52,7 @@
                     <group>
                         <group string="General Info">
                             <field name="postcode" readonly="state=='closed'" />
+                            <field name="create_time" readonly="1"/>
                             <field name="date_availability" readonly="state=='closed'"/>
                             <field name="expected_selling_date" readonly="state=='closed'"/>
                             <field name="is_late" invisible="1" readonly="state=='closed'"/>
