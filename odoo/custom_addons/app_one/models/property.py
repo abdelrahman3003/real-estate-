@@ -1,8 +1,5 @@
-from email.policy import default
-
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
-from odoo.release import description
 
 
 class Property(models.Model):
@@ -62,20 +59,23 @@ class Property(models.Model):
             rec.create_history_record(rec.state, 'draft')
             rec.state = 'draft'
 
+    def action(self):
+        print(self.env['property'].search([('name', '!=', 'property 1')]))
+
     def action_pending(self):
         for rec in self:
             rec.create_history_record(rec.state, 'pending')
             rec.state = 'pending'
+
     def action_sold(self):
         for rec in self:
             rec.create_history_record(rec.state, 'sold')
             rec.state = 'sold'
             print(rec.state)
 
-
     def action_closed(self):
         for rec in self:
-            rec.create_history_record(rec.state, 'closed','')
+            rec.create_history_record(rec.state, 'closed', '')
             rec.state = 'closed'
             print(rec.state)
 
@@ -107,21 +107,23 @@ class Property(models.Model):
             res.ref = self.env['ir.sequence'].next_by_code('property_seq')
         return res
 
-    def create_history_record(self, old_state,new_state,reason):
+    def create_history_record(self, old_state, new_state, reason):
         for rec in self:
             rec.env['property.history'].create({
                 'user_id': rec.env.uid,
                 'property_id': rec.id,
                 'old_state': old_state,
                 'new_state': new_state,
-                'reason':reason or "",
-                'line_ids':[(0,0,{'description':line.description,'area':line.area})for line in rec.bedrooms_ids],
+                'reason': reason or "",
+                'line_ids': [(0, 0, {'description': line.description, 'area': line.area}) for line in rec.bedrooms_ids],
             })
 
     def action_open_change_state(self):
-        action=self.env['ir.actions.actions']._for_xml_id('app_one.change_state_wizard_action')
-        action['context']={"default_property_id":self.id}
+        action = self.env['ir.actions.actions']._for_xml_id('app_one.change_state_wizard_action')
+        action['context'] = {"default_property_id": self.id}
         return action
+
+
 class Bedroom(models.Model):
     _name = 'bedroom'
     area = fields.Integer()

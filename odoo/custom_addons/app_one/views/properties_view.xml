@@ -26,6 +26,8 @@
             <form>
                 <sheet>
                     <header>
+                        <button name="action" type="object" class="btn-primary" string="Action"
+                        />
                         <button name="action_draft" type="object" class="btn-primary" string="Set to draft"
                                 invisible="state in ('draft','closed')"
                         />
@@ -51,7 +53,7 @@
                     </div>
                     <group>
                         <group string="General Info">
-                            <field name="postcode" readonly="state=='closed'" />
+                            <field name="postcode" readonly="state=='closed'"/>
                             <field name="create_time" readonly="1"/>
                             <field name="date_availability" readonly="state=='closed'"/>
                             <field name="expected_selling_date" readonly="state=='closed'"/>
@@ -121,7 +123,7 @@
             action=records.action_closed()
         </field>
     </record>
-      <record id="property_change_state_action_server" model="ir.actions.server">
+    <record id="property_change_state_action_server" model="ir.actions.server">
         <field name="name">Change State</field>
         <field name="model_id" ref="model_property"/>
         <field name="binding_model_id" ref="model_property"/>
