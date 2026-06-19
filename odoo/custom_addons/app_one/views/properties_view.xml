@@ -25,6 +25,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
                     <header>
                         <button name="action" type="object" class="btn-primary" string="Action"
                         />
