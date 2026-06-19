@@ -1,0 +1,7 @@
+@font-face {
+    font-family: "Cairo-Black";
+    src: url(/app_one/static/fonts/Cairo-Regular.ttf);
+}@font-face {
+    font-family: "Cairo-Bold";
+    src: url(/app_one/static/fonts/Cairo-Bold.ttf.ttf);
+}

@@ -22,9 +22,8 @@
         'wizard/property_change_state_wizard_view.xml',
     ],
     "assets": {
-        "web.assets_backend": [
-            "app_one/static/src/css/property.css",
-        ],
+        "web.assets_backend": ["app_one/static/src/css/property.css",],
+        "web.report_assets_common": ["/app_one/static/src/css/fonts.css",],
     },
     "application": True,
 }
