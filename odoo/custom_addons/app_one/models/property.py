@@ -9,8 +9,8 @@ class Property(models.Model):
 
     name = fields.Char(required=True)
     ref = fields.Char(default='New', readonly=True)
-    address = fields.Char(required=True)
-    phone = fields.Char(required=True)
+    address = fields.Char()
+    phone = fields.Char()
     description = fields.Text()
     postcode = fields.Char(required=True)
     date_availability = fields.Date(tracking=True)
