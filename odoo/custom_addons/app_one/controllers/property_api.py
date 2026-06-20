@@ -1,9 +1,10 @@
 import json
+import math
 from urllib.parse import parse_qs
 
-from .help_fun import success_response, error_response
 from odoo import http
 from odoo.http import request
+from .help_fun import success_response, error_response
 
 
 class PropertyApi(http.Controller):
@@ -96,9 +97,27 @@ class PropertyApi(http.Controller):
         try:
             params = parse_qs(request.httprequest.query_string.decode('utf-8'))
             domain = []
+            page = offset = None
+            limit = 0
+            if params:
+                if params.get('page'):
+                    limit = int(params.get('limit')[0])
+                if params.get('page'):
+                    page = int(params.get('page')[0])
+            if page:
+                offset = (page * limit) - limit
             if params.get('state'):
-                domain.append(('state', '=', params.get('state')[0]))
-            property_records = request.env['property'].sudo().search(domain)
+                domain += [('state', '=', params.get('state')[0])]
+            property_records = request.env['property'].sudo().search(domain, offset=offset, limit=limit,
+                                                                     order='id desc')
+            property_count_ids = request.env['property'].sudo().search_count(domain)
+            pagination_info = {
+                "page": page,
+                "limit": limit,
+                "pages": math.ceil(property_count_ids / limit) if limit else 1,
+                'count': property_count_ids,
+
+            }
             data = [{
                 "id": prop.id,
                 "name": prop.name or "",
@@ -110,7 +129,10 @@ class PropertyApi(http.Controller):
             } for prop in property_records]
             return success_response(
                 message="Properties fetched successfully",
-                data=data,
+                data={
+                    "pagination": pagination_info,
+                    "properties": data,
+                },
                 status=200
             )
         except Exception as error:

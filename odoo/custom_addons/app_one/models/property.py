@@ -56,7 +56,7 @@ class Property(models.Model):
 
     def action_draft(self):
         for rec in self:
-            rec.create_history_record(rec.state, 'draft')
+            rec.create_history_record(rec.state, 'draft','')
             rec.state = 'draft'
 
     def action(self):
@@ -64,12 +64,12 @@ class Property(models.Model):
 
     def action_pending(self):
         for rec in self:
-            rec.create_history_record(rec.state, 'pending')
+            rec.create_history_record(rec.state, 'pending','')
             rec.state = 'pending'
 
     def action_sold(self):
         for rec in self:
-            rec.create_history_record(rec.state, 'sold')
+            rec.create_history_record(rec.state, 'sold','')
             rec.state = 'sold'
             print(rec.state)
 
