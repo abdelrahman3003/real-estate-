@@ -1,58 +1,144 @@
 import json
+from urllib.parse import parse_qs
 
+from .help_fun import success_response, error_response
 from odoo import http
 from odoo.http import request
-from .help_fun import api_response
 
 
 class PropertyApi(http.Controller):
 
     @http.route('/v1/property/create', methods=['POST'], type='http', auth="none", csrf=False)
-    def post_property(self):
+    def create_property(self):
         try:
             json_vals = json.loads(request.httprequest.data.decode())
             required_fields = ['name', 'expected_price', 'description']
             for field in required_fields:
                 if not json_vals.get(field):
-                    return api_response(
-                        success=False,
+                    return error_response(
                         message="Validation Error",
-                        error=f"{field} is required.",
+                        error=f"{field} is required",
                         status=400
-
                     )
             property_record = request.env['property'].sudo().create(json_vals)
-            return request.make_json_response({
-                "message": "Property created successfully",
-                "id": property_record.id,
-                "name": property_record.name,
-            }, status=201)
+            return success_response(
+                message="Property created successfully",
+                data={
+                    "id": property_record.id,
+                    "name": property_record.name
+                },
+                status=201
+            )
+        except Exception as error:
+            return error_response(
+                message="Something went wrong",
+                error=error,
+                status=500
+            )
+
+    @http.route('/v1/property/update/<int:property_id>', methods=['PUT'], type='http', auth="none", csrf=False)
+    def update_property(self, property_id):
+        try:
+            property_record = request.env['property'].sudo().browse(property_id)
+            if not property_record.exists():
+                return error_response(
+                    message="Property not found",
+                    error="Invalid property ID",
+                    status=404
+                )
+            json_vals = json.loads(request.httprequest.data.decode())
+            property_record.write(json_vals)
+            return success_response(
+                message="Property updated successfully",
+                data={"id": property_record.id},
+                status=200
+            )
+        except Exception as error:
+            return error_response(
+                message="Something went wrong",
+                error=error,
+                status=500
+            )
+
+    @http.route('/v1/property/get/<int:property_id>', methods=['GET'], type='http', auth="none", csrf=False)
+    def get_property(self, property_id):
+        try:
+            property_record = request.env['property'].sudo().browse(property_id)
+            if not property_record.exists():
+                return error_response(
+                    message="Property not found",
+                    error="Invalid property ID",
+                    status=404
+                )
+            return success_response(
+                message="Property fetched successfully",
+                data={
+                    "id": property_record.id,
+                    "name": property_record.name or "",
+                    "expected_price": property_record.expected_price or 0,
+                    "description": property_record.description or "",
+                    "address": property_record.address or "",
+                    "phone": property_record.phone or "",
+                    "state": property_record.state or "",
+                },
+                status=200
+            )
 
         except Exception as error:
-            return request.make_json_response({
-                "message": "Something went wrong",
-                "error": str(error),
-            }, status=500)
-        
-    @http.route('/v1/property/update/<int:property_id>', methods=['PUT'], type='http', auth="none", csrf=False)
-    def update_proper(self, property_id):
-        property_id = request.env['property'].sudo().search([('id', '=', property_id)])
-        if not property_id:
-            return api_response(
-                success=False,
-                message="Failed to update property",
-                error="Property with the given ID was not found",
-                status=404
+            return error_response(
+                message="Something went wrong",
+                error=error,
+                status=500
             )
-        json_vals = json.loads(request.httprequest.data.decode())
+
+    @http.route('/v1/property/get_list', methods=['GET'], type='http', auth="none", csrf=False)
+    def get_property_list(self):
         try:
-            property_id.write(json_vals)
-            return request.make_json_response({
-                "message": "Property updated successfully",
-                "id": property_id.id,
-            })
+            params = parse_qs(request.httprequest.query_string.decode('utf-8'))
+            domain = []
+            if params.get('state'):
+                domain.append(('state', '=', params.get('state')[0]))
+            property_records = request.env['property'].sudo().search(domain)
+            data = [{
+                "id": prop.id,
+                "name": prop.name or "",
+                "expected_price": prop.expected_price or 0,
+                "description": prop.description or "",
+                "address": prop.address or "",
+                "phone": prop.phone or "",
+                "state": prop.state or "",
+            } for prop in property_records]
+            return success_response(
+                message="Properties fetched successfully",
+                data=data,
+                status=200
+            )
         except Exception as error:
-            return request.make_json_response({
-                "message": "Something went wrong",
-                "error": str(error),
-            }, status=500)
+            return error_response(
+                message="Something went wrong",
+                error=error,
+                status=500
+            )
+
+    @http.route('/v1/property/delete/<int:property_id>', methods=['DELETE'], type='http', auth="none", csrf=False)
+    def delete_property(self, property_id):
+        try:
+            property_record = request.env['property'].sudo().browse(property_id)
+            if not property_record.exists():
+                return error_response(
+                    message="Property not found",
+                    error="Invalid property ID",
+                    status=404
+                )
+            property_record.unlink()
+            return success_response(
+                message="Property deleted successfully",
+                data={"id": property_id},
+                status=200
+            )
+        except Exception as error:
+            return error_response(
+                message="Something went wrong",
+                error=error,
+                status=500
+            )
