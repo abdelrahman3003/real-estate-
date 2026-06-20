@@ -1,0 +1,261 @@
+#. module: app_one
+msgid "Action"
+msgstr "إجراء"
+
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Activities"
+msgstr "الأنشطة"
+
+msgid "Activity Exception Decoration"
+msgstr "تنسيق استثناء النشاط"
+
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+msgid "Addition Info"
+msgstr "معلومات إضافية"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Archived"
+msgstr "مؤرشف"
+
+msgid "Area"
+msgstr "المساحة"
+
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+msgid "Bedrooms"
+msgstr "غرف النوم"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Change State"
+msgstr "تغيير الحالة"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Configuration"
+msgstr "الإعدادات"
+
+msgid "Confirm"
+msgstr "تأكيد"
+
+msgid "Create Time"
+msgstr "وقت الإنشاء"
+
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+msgid "Date Availability"
+msgstr "تاريخ الإتاحة"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Diff"
+msgstr "الفرق"
+
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+msgid "Draft"
+msgstr "مسودة"
+
+msgid "East"
+msgstr "شرق"
+
+msgid "Expected Price"
+msgstr "السعر المتوقع"
+
+msgid "Expected Selling Date"
+msgstr "تاريخ البيع المتوقع"
+
+msgid "Facades"
+msgstr "الواجهات"
+
+msgid "Followers"
+msgstr "المتابعون"
+
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+msgid "Garage"
+msgstr "جراج"
+
+msgid "Garden"
+msgstr "حديقة"
+
+msgid "Garden Area"
+msgstr "مساحة الحديقة"
+
+msgid "Garden Operator"
+msgstr "اتجاه الحديقة"
+
+msgid "General Info"
+msgstr "معلومات عامة"
+
+msgid "Has Message"
+msgstr "يوجد رسائل"
+
+msgid "History"
+msgstr "السجل"
+
+msgid "ID"
+msgstr "المعرف"
+
+msgid "Icon"
+msgstr "أيقونة"
+
+msgid "Is Follower"
+msgstr "متابع"
+
+msgid "Is Late"
+msgstr "متأخر"
+
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+msgid "Leaves"
+msgstr "الإجازات"
+
+msgid "Line"
+msgstr "سطر"
+
+msgid "Messages"
+msgstr "الرسائل"
+
+msgid "My Activity Deadline"
+msgstr "موعد نشاطي النهائي"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "New State"
+msgstr "حالة جديدة"
+
+msgid "Next Activity Deadline"
+msgstr "موعد النشاط القادم"
+
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط القادم"
+
+msgid "Next Activity Type"
+msgstr "نوع النشاط القادم"
+
+msgid "North"
+msgstr "شمال"
+
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+msgid "Old State"
+msgstr "الحالة السابقة"
+
+msgid "Owner"
+msgstr "المالك"
+
+msgid "Owners"
+msgstr "الملاك"
+
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Postcode"
+msgstr "الرمز البريدي"
+
+msgid "Properties"
+msgstr "العقارات"
+
+msgid "Property"
+msgstr "عقار"
+
+msgid "Property History"
+msgstr "سجل العقار"
+
+msgid "Property Manager"
+msgstr "مدير العقارات"
+
+msgid "Property Report"
+msgstr "تقرير العقار"
+
+msgid "Property User"
+msgstr "مستخدم العقار"
+
+msgid "Reason"
+msgstr "السبب"
+
+msgid "Ref"
+msgstr "المرجع"
+
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+msgid "Selling Price"
+msgstr "سعر البيع"
+
+msgid "Set to draft"
+msgstr "إرجاع لمسودة"
+
+msgid "Sold"
+msgstr "مباع"
+
+msgid "South"
+msgstr "جنوب"
+
+msgid "State"
+msgstr "الحالة"
+
+msgid "Tag"
+msgstr "وسم"
+
+msgid "Tags"
+msgstr "الوسوم"
+
+msgid "User"
+msgstr "المستخدم"
+
+msgid "West"
+msgstr "غرب"
+
+msgid "bedroom"
+msgstr "غرفة نوم"
+
+msgid "client"
+msgstr "عميل"
+
+msgid "owner"
+msgstr "مالك"
+
+msgid "tag"
+msgstr "وسم"
+
+msgid "Real Estate"
+msgstr "العقارات"
+
+msgid "pending"
+msgstr "قيد الانتظار"
