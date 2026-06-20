@@ -12,7 +12,7 @@ class Property(models.Model):
     address = fields.Char()
     phone = fields.Char()
     description = fields.Text()
-    postcode = fields.Char(required=True)
+    postcode = fields.Char()
     date_availability = fields.Date(tracking=True)
     create_time = fields.Datetime(default=fields.datetime.now())
     expected_selling_date = fields.Date(tracking=True)
