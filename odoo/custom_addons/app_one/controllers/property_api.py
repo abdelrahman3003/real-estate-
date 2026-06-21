@@ -2,14 +2,16 @@ import json
 import math
 from urllib.parse import parse_qs
 
+from helper.auth_service import require_auth
 from odoo import http
 from odoo.http import request
-from .help_fun import success_response, error_response
+from helper.api_response import success_response, error_response
 
 
 class PropertyApi(http.Controller):
 
-    @http.route('/v1/property/create', methods=['POST'], type='http', auth="none", csrf=False)
+    @http.route('/v1/property/create', methods=['POST'], type='http', auth="public", csrf=False)
+    @require_auth
     def create_property(self):
         try:
             json_vals = json.loads(request.httprequest.data.decode())
@@ -37,7 +39,8 @@ class PropertyApi(http.Controller):
                 status=500
             )
 
-    @http.route('/v1/property/update/<int:property_id>', methods=['PUT'], type='http', auth="none", csrf=False)
+    @http.route('/v1/property/update/<int:property_id>', methods=['PUT'], type='http', auth="public", csrf=False)
+    @require_auth
     def update_property(self, property_id):
         try:
             property_record = request.env['property'].sudo().browse(property_id)
@@ -61,7 +64,8 @@ class PropertyApi(http.Controller):
                 status=500
             )
 
-    @http.route('/v1/property/get/<int:property_id>', methods=['GET'], type='http', auth="none", csrf=False)
+    @http.route('/v1/property/get/<int:property_id>', methods=['GET'], type='http', auth="public", csrf=False)
+    @require_auth
     def get_property(self, property_id):
         try:
             property_record = request.env['property'].sudo().browse(property_id)
@@ -92,7 +96,8 @@ class PropertyApi(http.Controller):
                 status=500
             )
 
-    @http.route('/v1/property/get_list', methods=['GET'], type='http', auth="none", csrf=False)
+    @http.route('/v1/property/get_list', methods=['GET'], type='http', auth="public", csrf=False)
+    @require_auth
     def get_property_list(self):
         try:
             params = parse_qs(request.httprequest.query_string.decode('utf-8'))
@@ -142,7 +147,8 @@ class PropertyApi(http.Controller):
                 status=500
             )
 
-    @http.route('/v1/property/delete/<int:property_id>', methods=['DELETE'], type='http', auth="none", csrf=False)
+    @http.route('/v1/property/delete/<int:property_id>', methods=['DELETE'], type='http', auth="public", csrf=False)
+    @require_auth
     def delete_property(self, property_id):
         try:
             property_record = request.env['property'].sudo().browse(property_id)
