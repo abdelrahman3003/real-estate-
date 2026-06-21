@@ -156,9 +156,20 @@
         <field name="res_model">property</field>
     </record>
 
+    <record id="list_view_action" model="ir.actions.client">
+        <field name="name">Properties List View</field>
+        <field name="tag">app_one.actoin_list_view</field>
+    </record>
+
+
     <menuitem id="properties_menu_item"
               name="Properties"
               parent="properties_menu"
               action="property_action"/>
+
+    <menuitem id="properties_List_view_menu_item"
+              name="Properties OWL"
+              parent="properties_menu"
+              action="list_view_action"/>
 
 </odoo>
