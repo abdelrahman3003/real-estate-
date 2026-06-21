@@ -14,6 +14,11 @@ class Task(models.Model):
     create_date = fields.Datetime(readonly=True)  # built-in field
     date_only = fields.Date(string="Creation Date", compute="_compute_date_only", store=False)
     assign_to = fields.Many2one("res.partner")
+    estimated_time = fields.Float()
+    timesheet_ids = fields.One2many('task.timesheet', 'task_id')
+    _sql_constraints = [
+        ('unique_tite', 'unique(title)', 'This name already exists')
+    ]
 
     @api.depends('create_date')
     def _compute_date_only(self):
