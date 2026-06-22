@@ -1,3 +1,5 @@
+from email.policy import default
+
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
 
@@ -14,6 +16,7 @@ class Task(models.Model):
     create_date = fields.Datetime(readonly=True)  # built-in field
     date_only = fields.Date(string="Creation Date", compute="_compute_date_only", store=False)
     assign_to = fields.Many2one("res.partner")
+    active=fields.Boolean(default=True)
 
     @api.depends('create_date')
     def _compute_date_only(self):
