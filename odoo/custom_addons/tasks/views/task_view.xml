@@ -1,15 +1,14 @@
 <odoo>
-
     <record id="task_view_tree" model="ir.ui.view">
         <field name="name">task tree</field>
         <field name="model">task</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree  decoration-danger="(is_late)">
                 <field name="title"/>
                 <field name="status"/>
                 <field name="assign_to"/>
                 <field name="date_only"/>
-
+                <field name="is_late" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -37,6 +36,7 @@
                         <group>
                             <field name="create_date" readonly="1"/>
                             <field name="assign_to"/>
+                            <field name="deadline" widget="date"/>
                         </group>
                     </group>
 
@@ -60,6 +60,28 @@
         </field>
     </record>
 
+    <record id="task_closed_action_server" model="ir.actions.server">
+        <field name="name">Closed</field>
+        <field name="model_id" ref="model_task"/>
+        <field name="binding_model_id" ref="model_task"/>
+        <field name="state">code</field>
+        <field name="code">
+            action=records.action_closed()
+        </field>
+    </record>
+
+    <record id="check_task_date_cron" model="ir.cron">
+        <field name="name">Task Deadline</field>
+        <field name="model_id" ref="model_task"/>
+        <field name="state">code</field>
+        <field name="code">
+            model.check_task_deadline_date()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+    </record>
 
     <record id="task_action" model="ir.actions.act_window">
         <field name="name">Task Action</field>
