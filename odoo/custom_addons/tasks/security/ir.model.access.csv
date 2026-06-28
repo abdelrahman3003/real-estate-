@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_task,access_task,model_task,,1,1,1,1
+access_task,access_task,model_task,,1,0,0,0
+access_task_implementor,access_task_implementor,model_task,tasks.group_implementor,1,0,1,1
+access_task_developer,access_task_developer,model_task,tasks.group_developer,1,1,0,0
 access_task_timesheet,access_task_timesheet,model_task_timesheet,,1,1,1,1

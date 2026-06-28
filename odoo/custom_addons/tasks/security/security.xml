@@ -1,0 +1,13 @@
+<odoo>
+    <record id="module_category_tasks" model="ir.module.category">
+        <field name="name">Tasks</field>
+    </record>
+    <record id="group_developer" model="res.groups">
+        <field name="name">Developer</field>
+         <field name="category_id" ref="module_category_tasks"/>
+    </record>
+    <record id="group_implementor" model="res.groups">
+        <field name="name">Implementor</field>
+         <field name="category_id" ref="module_category_tasks"/>
+    </record>
+</odoo>

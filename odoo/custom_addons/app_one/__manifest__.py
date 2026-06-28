@@ -5,7 +5,8 @@
     "depends":
         [
         "base",
-        "sale_management"
+        "sale_management",
+        "purchase",
         ],
     'category': '',
     "data": [
@@ -18,6 +19,7 @@
         'views/tag_view.xml',
         'views/sale_order_view.xml',
         'views/property_history_view.xml',
+        'views/purchase_order_view.xml',
         'reports/property_report.xml',
         'wizard/property_change_state_wizard_view.xml',
     ],

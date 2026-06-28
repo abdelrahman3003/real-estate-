@@ -1,5 +1,4 @@
 from odoo import fields, models, api
-from odoo.exceptions import ValidationError
 
 
 class Task(models.Model):
@@ -7,20 +6,21 @@ class Task(models.Model):
     title = fields.Char(required=True)
     description = fields.Char(required=True)
     status = fields.Selection([
-        ('new', 'New' ),
+        ('new', 'New'),
         ('in_progress', 'In Progress'),
         ('completed', 'Completed'),
         ('closed', 'Closed'),
-    ],default='new')
+    ], default='new')
     create_date = fields.Datetime(readonly=True)  # built-in field
     date_only = fields.Date(string="Creation Date", compute="_compute_date_only", store=False)
-    assign_to = fields.Many2one("res.partner")
+    developer_id = fields.Many2one('res.users', string='Developer',
+    domain = lambda self: [('groups_id', 'in', self.env.ref('tasks.group_developer').id)])
     estimated_time = fields.Float()
     timesheet_ids = fields.One2many('task.timesheet', 'task_id')
     _sql_constraints = [
         ('unique_tite', 'unique(title)', 'This name already exists')
     ]
-    active=fields.Boolean(default=True)
+    active = fields.Boolean(default=True)
     deadline = fields.Date()
     is_late = fields.Boolean(default=False)
 
@@ -38,14 +38,3 @@ class Task(models.Model):
         for rec in task_ids:
             if rec.deadline and rec.deadline < fields.Date.today():
                 rec.is_late = True
-
-
-
-
-
-
-
-
-
-
-

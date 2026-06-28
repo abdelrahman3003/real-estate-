@@ -5,9 +5,10 @@
     "depends": ['base','contacts'],
     'category': '',
     "data": [
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/base_menu.xml',
         'views/task_view.xml',
-        'security/ir.model.access.csv',
     ],
     "application": True,
 }

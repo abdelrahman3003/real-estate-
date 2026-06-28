@@ -1,7 +1,10 @@
 <odoo>
     <menuitem id="task_root_menu"
-              name="Project"/>
+              name="Project"
+
+    />
     <menuitem id="tasks_menu"
               name="Tasks"
-              parent="task_root_menu"/>
+              parent="task_root_menu"
+    />
 </odoo>
