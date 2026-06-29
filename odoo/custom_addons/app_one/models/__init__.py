@@ -6,4 +6,4 @@ from . import sale_order
 from . import client
 from . import property_history
 from . import res_user
-from . import purchase_order
+from .purchsae_order import purchase_order
