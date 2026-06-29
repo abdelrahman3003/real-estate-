@@ -33,14 +33,14 @@ class PurchaseOrder(models.Model):
         for order in self:
             order.total_quantity = sum(order.order_line.mapped('product_qty'))
 
-    def action(self):
-        print("0000000")
+
 
     @api.depends("order_line")
     def _compute_line_count(self):
         for order in self:
             order.line_count = len(order.order_line)
-    def action_view_order_lines(self):
+
+    def open_view_order_lines(self):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -53,3 +53,19 @@ class PurchaseOrder(models.Model):
             },
         }
 
+    def duplicate_purchase_order(self):
+        self.ensure_one()
+        new_purchase = self.copy(default={
+            "partner_ref": False,
+            "state": "draft",
+        }
+        )
+        new_purchase.message_post(body="Purchase duplicated successfully.")
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Purchase Order",
+            "res_model": "purchase.order",
+            "view_mode": "form",
+            "res_id": new_purchase.id,
+            "target": "current",
+        }
