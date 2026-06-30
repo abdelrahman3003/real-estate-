@@ -26,14 +26,30 @@ class PurchaseOrder(models.Model):
         for order in self:
             if not order.order_line:
                 raise ValidationError("You cannot confirm an order without order lines.")
+            if order.amount_total > 10000:
+                order.state = "to approve"
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Approval Required",
+                        "message": "This purchase order has been submitted for manager approval.",
+                        "type": "warning",
+                        "sticky": False,
+                    },
+                }
         return super().button_confirm()
+
+
+    def approve(self):
+        for order in self:
+            order.state = "purchase"
+            return super().button_confirm()
 
     @api.depends('order_line.product_qty')
     def _compute_total_quantity(self):
         for order in self:
             order.total_quantity = sum(order.order_line.mapped('product_qty'))
-
-
 
     @api.depends("order_line")
     def _compute_line_count(self):
@@ -69,3 +85,7 @@ class PurchaseOrder(models.Model):
             "res_id": new_purchase.id,
             "target": "current",
         }
+
+    def action_done(self):
+        for record in self:
+            record.state = "done"
