@@ -6,3 +6,4 @@ access_bedroom,access_bedroom,model_bedroom,,1,1,1,1
 access_property_history,access_property_history,model_property_history,,1,1,1,1
 access_change_state,access_change_state,model_change_state,,1,1,1,1
 access_property_history_line,access_property_history_line,model_property_history_line,,1,1,1,1
+access_increase_price_wizard,access_increase_price_wizard,model_increase_price_wizard,,1,1,1,1

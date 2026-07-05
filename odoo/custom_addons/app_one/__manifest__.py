@@ -18,11 +18,12 @@
         'views/owner_view.xml',
         'views/tag_view.xml',
         'views/sale_order_view.xml',
+        'views/property_change_state_wizard_view.xml',
+        'views/increase_price_wizard_view.xml',
         'views/property_history_view.xml',
         'views/purchase_order_view.xml',
         'views/purchase_order_line_view.xml',
         'reports/property_report.xml',
-        'wizard/property_change_state_wizard_view.xml',
     ],
     "assets": {
         "web.assets_backend": [
