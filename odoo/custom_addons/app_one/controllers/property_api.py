@@ -9,7 +9,6 @@ from helper.api_response import success_response, error_response
 
 
 class PropertyApi(http.Controller):
-
     @http.route('/v1/property/create', methods=['POST'], type='http', auth="public", csrf=False)
     @require_auth
     def create_property(self):

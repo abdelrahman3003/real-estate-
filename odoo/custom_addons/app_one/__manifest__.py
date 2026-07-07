@@ -23,7 +23,9 @@
         'views/property_history_view.xml',
         'views/purchase_order_view.xml',
         'views/purchase_order_line_view.xml',
+        'views/purchase_dashboard_view.xml',
         'reports/property_report.xml',
+
     ],
     "assets": {
         "web.assets_backend": [

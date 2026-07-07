@@ -1,0 +1,43 @@
+<odoo>
+
+    <record id="view_purchase_dashboard_form" model="ir.ui.view">
+        <field name="name">purchase.dashboard.form</field>
+        <field name="model">purchase.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Dashboard" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <field name="draft_count" readonly="1"/>
+                        <field name="rfq_sent_count" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="confirmed_count" readonly="1"/>
+                        <field name="done_count" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="cancelled_count" readonly="1"/>
+                        <field name="total_purchases" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="monthly_purchase_amount" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_purchase_dashboard" model="ir.actions.act_window">
+        <field name="name">Dashboard</field>
+        <field name="res_model">purchase.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_purchase_dashboard_form"/>
+    </record>
+
+    <menuitem
+        id="menu_purchase_dashboard"
+        name="Dashboard"
+        parent="purchase.menu_purchase_root"
+        action="action_purchase_dashboard"
+        sequence="5"/>
+
+</odoo>
